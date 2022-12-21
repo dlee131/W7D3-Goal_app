@@ -14,8 +14,8 @@ FactoryBot.define do
     username { Faker::Games::Valorant.character}
     password { 'password' }
 
-    factory :Valorant do
-      username { Valorant }
+    factory :valorant do
+      username { "Valorant" }
     end
   end
 end
