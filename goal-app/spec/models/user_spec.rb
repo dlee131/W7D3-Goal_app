@@ -12,7 +12,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
+    subject(:gerald) do
+      User.create!(
+        username: "gerald",
+        password: "super_secret_password"
+      )
+    end
 
   it { should validate_presence_of(:username)  }
 
@@ -21,17 +26,17 @@ RSpec.describe User, type: :model do
   it { should validate_length_of(:password).is_at_least(6)}
 
 
-  describe 'uniqueness' do
-    before :each do
-        create(:user)
-    end
-    it { should validate_uniqueness_of (:username)}
+  # describe 'uniqueness' do
+  #   before :each do
+  #       create(:user)
+  #   end
+  #   it { should validate_uniqueness_of (:username)}
     # it { should validate_uniqueness_of ()}
-  end
+
 
   describe "is_password?" do
     let!(:user) { create(:user)}
-
+  end
     context "with a valid password" do
       it "should return true" do
       expect(user.is_password?("password")).to be true 
@@ -43,7 +48,7 @@ RSpec.describe User, type: :model do
       expect(user.is_password?("swole")).to be false
       end
     end
-  end
+
 
 
 
